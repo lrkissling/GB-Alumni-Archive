@@ -1,15 +1,17 @@
 import { config } from "/deps.ts";
 
-export const getChannelByUsername = (username: string) => {
+export const getVideosForPlaylist = (playlistID: string) => {
   const params = new URLSearchParams({
-    forUsername: username,
-    part: "snippet,contentDetails,statistics",
+    playlistId: playlistID,
+    part: "snippet,id",
+    order: "date",
+    maxResults: "50",
     key: config().YOUTUBE_API_KEY,
   });
 
   console.log(params);
 
-  return fetch(`https://youtube.googleapis.com/youtube/v3/channels?${params}`, {
+  return fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?${params}`, {
     headers: { Accept: "application/json" },
   })
   .then(response => response)

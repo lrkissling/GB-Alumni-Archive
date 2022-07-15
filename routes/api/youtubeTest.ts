@@ -1,6 +1,8 @@
 import { HandlerContext } from "$fresh/server.ts";
-import { getChannelByUsername } from "/apiHandlers/youtube.ts";
+import { getVideosForPlaylist } from "/apiHandlers/youtube.ts";
+import { YOUTUBE_CHANNELS } from "/constants.ts";
+
 
 export const handler = (_req: Request, _ctx: HandlerContext): Promise<Response> => {
-  return getChannelByUsername("ybbaaabby");
+  return getVideosForPlaylist(YOUTUBE_CHANNELS[0].uploadsID);
 };
